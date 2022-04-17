@@ -59,6 +59,12 @@ const main = async () => {
 
   await contract.setGreeting('My Random Greet Message');
 
+  const result = await contract.filters.NewGreet();
+  const events = await contract.queryFilter(result);
+  console.log({ events: events?.[0]?.args });
+
+  // console.log(await (events[0] as any).decode())
+
   // Hardhat always runs the compile task when running scripts with its command
   // line interface.
   //
